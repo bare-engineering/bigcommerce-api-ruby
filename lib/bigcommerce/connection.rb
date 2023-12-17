@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'faraday'
+require 'faraday/gzip'
+
 module Bigcommerce
   module Connection
     LEGACY_AUTH_MODE = 'legacy'
@@ -21,7 +24,7 @@ module Bigcommerce
           conn.use Bigcommerce::Middleware::Auth, config
         end
         conn.use Bigcommerce::Middleware::HttpException
-        conn.use Faraday::Gzip
+        conn.use Faraday::Gzip::Middleware
         conn.adapter Faraday.default_adapter
       end
     end
