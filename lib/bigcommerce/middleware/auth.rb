@@ -2,14 +2,13 @@
 
 module Bigcommerce
   module Middleware
-    class Auth < Faraday::Middleware
+    class Auth
       X_AUTH_CLIENT_HEADER = 'X-Auth-Client'
       X_AUTH_TOKEN_HEADER = 'X-Auth-Token'
 
       def initialize(app, options = {})
         @app = app
         @options = options
-        super(app)
       end
 
       def call(env)
